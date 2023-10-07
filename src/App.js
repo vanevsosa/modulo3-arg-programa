@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {Clima} from './Componentes/Clima';
 
+const estilos = {
+  header: {
+    justifyContent: "space-evenly",
+  },
+  contenedorGeneral: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap:"40px"
+  },
+};
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="contenedorGeneral" style={estilos.header}>
+      <div style={estilos.contenedorGeneral}>
+          <Clima/>
+        </div>
       </header>
-    </div>
   );
 }
 
 export default App;
+
+// https://www.youtube.com/watch?v=mDnd5rCDk6s
+// Video íconos
+// https://bas.dev/work/meteocons página Íconos
