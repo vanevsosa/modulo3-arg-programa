@@ -4,6 +4,7 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
+    height: "auto",
   },
   span: {
     fontSize:"x-large",
@@ -25,12 +26,11 @@ const estilos = {
   },
 };
 
-function EstadoViento({windStatus, setWindStatus}) {
+function EstadoViento({windStatus}) {
   return (
         <div className="grid-item" style={estilos.grilla}>
          <br></br>
         <span style={estilos.span2}>Wind Status</span>
-              <br></br>
               <br></br>
               <span style={estilos.span}>🍃</span>
               <span style={estilos.span}>{windStatus} Km/h</span>

@@ -6,6 +6,7 @@ const estilos = {
       border: "5px solid #10113b",
       fontSize: "medium",
       textAlign: "center",
+      height: "auto",
     },
     span: {
       fontSize: "x-large",
@@ -27,10 +28,7 @@ const estilos = {
       },
   };
 
-  function CalidadAire({calidadDelAire, setCalidadDelAire}) {
-    // const [icons, setIcons]= useState("");
-
-    // setIcons=(data.weatherCodeInfo[calidadDelAire].image_src);
+  function CalidadAire({calidadDelAire}) {
     const weatherCodeInfo = {
     0 : {
         "name": "despejado",
@@ -147,13 +145,12 @@ const estilos = {
     },
 }
 
-
     return (
         <div className="grid-item" style={estilos.grilla}>
         <br></br>
         <span style={estilos.span2}>Air Quality</span>
         <br></br>
-              <br></br>
+        <br></br>
               <img style={estilos.img} src={weatherCodeInfo[calidadDelAire].image_src} alt="Imagen "></img>
               <br></br>
               <span style={estilos.span3}>{weatherCodeInfo[calidadDelAire].name}</span>

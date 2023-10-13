@@ -5,6 +5,7 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
+    height: "auto",
   },
   span: {
     fontSize: "x-large",
@@ -21,16 +22,14 @@ const estilos = {
   },
 };
 
-function Visibilidad({visibilidad, setVisibilidad}) {
+function Visibilidad({visibilidad}) {
   return (
       <div className="grid-item" style={estilos.grilla}>
       <br></br>
       <span style={estilos.span2}>Visibility</span>
       <br></br>
-            <br></br>
             <span style={estilos.span}>👁️‍🗨️</span>
-            <span style={estilos.span}>{visibilidad} km</span>
-            <br></br>
+            <span style={estilos.span}>{visibilidad} m</span>
             <br></br>
             <span style={estilos.span3}>Average</span>
       </div>

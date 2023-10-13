@@ -5,6 +5,9 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
+    display: "grid",
+    flex: "1 0 100px",
+    height: "auto",
   },
   span: {
     fontSize: "x-large",
@@ -21,16 +24,14 @@ const estilos = {
   },
 };
 
-function Humedad({humedad, setHumedad} ) {
+function Humedad({humedad} ) {
   return (
     <div className="grid-item" style={estilos.grilla}>
     <br></br>
       <span style={estilos.span2}>Humidity</span>
       <br></br>
-      <br></br>
       <span style={estilos.span}>⛈️</span>
       <span style={estilos.span}>{humedad} %</span>
-      <br></br>
       <br></br>
       <span style={estilos.span3}>Normal</span>
     </div>

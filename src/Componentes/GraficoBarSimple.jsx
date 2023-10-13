@@ -4,19 +4,20 @@ import { BarChart } from "@mui/x-charts/BarChart";
 const estilos = {
   grafico: {
     padding: "0",
+    height: "50%",
   },
   minMax: {
     fontFamily: "-apple-system",
     color: "rgb(39 41 209)",
     border: "solid 9px #35476c",
     fontWeight: "bolder",
-    maxHeight: "250px",
+    maxHeight: "auto",
     backgroundColor: "#ffe5b4",
   },
 };
 
-function GraficoBarSimple({grafTempXHora, setGrafTempXHora}) {
-  console.log(grafTempXHora);
+function GraficoBarSimple({grafTempXHora}) {
+  
   return (
     <div style={estilos.minMax}>
       <BarChart
@@ -34,7 +35,7 @@ function GraficoBarSimple({grafTempXHora, setGrafTempXHora}) {
             color: "#298482"
           },
         ]}
-        width={350}
+        width={450}
         height={250}
         padding={0}
       />

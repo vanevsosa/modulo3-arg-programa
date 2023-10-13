@@ -6,6 +6,7 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
+    height: "auto",
   },
   span: {
     fontSize: "xx-large",
@@ -16,15 +17,6 @@ const estilos = {
     fontSize: "large",
     fontWeight: "bolder",
   },
-  span3: {
-    fontSize: "large",
-    fontWeight: "bolder",
-  },
-  span4: {
-    fontSize: "large",
-    fontWeight: "bolder",
-    color: "rgb(39 41 209)",
-  },
 };
 
 function IndiceUV({uv, setUv}) {
@@ -33,8 +25,6 @@ function IndiceUV({uv, setUv}) {
       <br></br>
       <span style={estilos.span2}>UV Index</span>
       <br></br>
-      <br></br>
-
       <span style={estilos.span}>⛱️ </span>
   
     </div>

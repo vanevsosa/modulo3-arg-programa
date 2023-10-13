@@ -5,6 +5,7 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
+    height: "auto",
   },
   span2: {
     fontSize:"large",
@@ -17,26 +18,22 @@ const estilos = {
   },
 };
 
-function SalidaPuestaSol({salidaYPuestaSol, setSalidaYPuestaSol}) {
-  return (
-     
-      
+function SalidaPuestaSol({salidaYPuestaSol}) {
+  return (     
         <div className="grid-item" style={estilos.grilla}>
         <br></br>
         <span style={estilos.span2}>Sunrise</span>
               <br></br>
               <span style={estilos.span4}>🌅</span>
-              <span style={estilos.span4}>6:35 AM</span>
+              <span style={estilos.span4}>{salidaYPuestaSol.min}</span>
+              <br></br>
               <br></br>
               <span style={estilos.span2}>Sunset</span>
               <br></br>
               <span style={estilos.span4}>🌄</span>
-              <span style={estilos.span4}>7:22PM</span>
+              <span style={estilos.span4}>{salidaYPuestaSol.max}</span>
               <br></br>
-              <br></br>
-        </div>
-        
-     
+        </div>      
   );
 }
 export { SalidaPuestaSol };

@@ -10,17 +10,18 @@ const estilos = {
   },
   container: {
     display: "grid",
-    gridTemplateColumns: "auto auto ",
     columnGap: "10px",
-    maxWidth: "950px",
+    gridTemplateColumns: "auto auto",
+    maxWidth: "550px",
     margin: "0 auto",
     padding: "25px 25px",
+    height: "auto",
   },
   span: {
     fontSize:"xxx-large",
   },
   span3: {
-    fontSize:"large",
+    fontSize:"xx-large",
   },
 };
 
@@ -31,14 +32,18 @@ function MinMax({tempMinMax, setTempMinMax}){
           <div style={estilos.minMax}>
             <span style={estilos.span}>{tempMinMax.max}</span>
             <br></br>
+            <br></br>
             <span style={estilos.span}>🌤️</span>
+            <br></br>
             <br></br>
             <span style={estilos.span3}>High</span>
           </div>  
           <div style={estilos.minMax}>
             <span style={estilos.span}>{tempMinMax.min}</span>
             <br></br>
+            <br></br>
             <span style={estilos.span}>🌛</span>
+            <br></br>
             <br></br>
             <span style={estilos.span3}>Low</span>
           </div>

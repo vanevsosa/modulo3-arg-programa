@@ -21,7 +21,8 @@ const estilos = {
     gridTemplateColumns: "1fr 1fr 1fr",
     marginLeft: "5%",
     marginRight: "5%",
-    maxWidth: "90%",
+    maxWidth: "80%",
+    maxHeight: "auto",
   },
 };
 
