@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/modulo3-arg-programa/static/css/main.06c53ec2.css",
-    "main.js": "/modulo3-arg-programa/static/js/main.8c9fb19a.js",
+    "main.js": "/modulo3-arg-programa/static/js/main.cec3eab4.js",
     "static/js/787.57af8fdc.chunk.js": "/modulo3-arg-programa/static/js/787.57af8fdc.chunk.js",
     "static/media/cielo.jpeg": "/modulo3-arg-programa/static/media/cielo.06b4816c763aef97b682.jpeg",
     "static/media/relojClima.jpg": "/modulo3-arg-programa/static/media/relojClima.1892a6b15427a836ceb0.jpg",
@@ -63,11 +63,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/modulo3-arg-programa/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/modulo3-arg-programa/index.html",
     "main.06c53ec2.css.map": "/modulo3-arg-programa/static/css/main.06c53ec2.css.map",
-    "main.8c9fb19a.js.map": "/modulo3-arg-programa/static/js/main.8c9fb19a.js.map",
+    "main.cec3eab4.js.map": "/modulo3-arg-programa/static/js/main.cec3eab4.js.map",
     "787.57af8fdc.chunk.js.map": "/modulo3-arg-programa/static/js/787.57af8fdc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.06c53ec2.css",
-    "static/js/main.8c9fb19a.js"
+    "static/js/main.cec3eab4.js"
   ]
 }
