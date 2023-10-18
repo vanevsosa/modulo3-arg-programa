@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/modulo3-arg-programa/static/css/main.06c53ec2.css",
-    "main.js": "/modulo3-arg-programa/static/js/main.cec3eab4.js",
+    "main.css": "/modulo3-arg-programa/static/css/main.c66a24de.css",
+    "main.js": "/modulo3-arg-programa/static/js/main.9778dcc5.js",
     "static/js/787.57af8fdc.chunk.js": "/modulo3-arg-programa/static/js/787.57af8fdc.chunk.js",
-    "static/media/cielo.jpeg": "/modulo3-arg-programa/static/media/cielo.06b4816c763aef97b682.jpeg",
     "static/media/relojClima.jpg": "/modulo3-arg-programa/static/media/relojClima.1892a6b15427a836ceb0.jpg",
     "static/media/roboto-latin-500-normal.woff2": "/modulo3-arg-programa/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/modulo3-arg-programa/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
@@ -62,12 +61,12 @@
     "static/media/roboto-greek-ext-400-normal.woff": "/modulo3-arg-programa/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "static/media/roboto-greek-ext-700-normal.woff": "/modulo3-arg-programa/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/modulo3-arg-programa/index.html",
-    "main.06c53ec2.css.map": "/modulo3-arg-programa/static/css/main.06c53ec2.css.map",
-    "main.cec3eab4.js.map": "/modulo3-arg-programa/static/js/main.cec3eab4.js.map",
+    "main.c66a24de.css.map": "/modulo3-arg-programa/static/css/main.c66a24de.css.map",
+    "main.9778dcc5.js.map": "/modulo3-arg-programa/static/js/main.9778dcc5.js.map",
     "787.57af8fdc.chunk.js.map": "/modulo3-arg-programa/static/js/787.57af8fdc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.06c53ec2.css",
-    "static/js/main.cec3eab4.js"
+    "static/css/main.c66a24de.css",
+    "static/js/main.9778dcc5.js"
   ]
 }
