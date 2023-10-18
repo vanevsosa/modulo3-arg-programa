@@ -1,4 +1,5 @@
 import * as React from "react";
+import {CircularDetConNumeros} from './CircularDetConNumeros';
 
 const estilos = {
   grilla: {
@@ -6,7 +7,6 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
-    height: "auto",
   },
   span: {
     fontSize: "xx-large",
@@ -26,6 +26,7 @@ function IndiceUV({uv, setUv}) {
       <span style={estilos.span2}>UV Index</span>
       <br></br>
       <span style={estilos.span}>⛱️ </span>
+      <CircularDetConNumeros uv={uv} setUv={setUv} />
   
     </div>
   );

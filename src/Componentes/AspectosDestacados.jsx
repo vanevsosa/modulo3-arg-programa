@@ -21,8 +21,7 @@ const estilos = {
     gridTemplateColumns: "1fr 1fr 1fr",
     marginLeft: "5%",
     marginRight: "5%",
-    maxWidth: "80%",
-    maxHeight: "auto",
+    maxWidth: "90%",
   },
 };
 
@@ -35,7 +34,7 @@ function AspectosDestacados({uv, setUv , windStatus, setWindStatus,salidaYPuesta
   
         <EstadoViento windStatus={windStatus} setWindStatus={setWindStatus} />
         <IndiceUV uv={uv} setUv ={setUv} />
-        <SalidaPuestaSol salidaPuestaSol={salidaYPuestaSol} setSalidaPuestaSol={setSalidaYPuestaSol} />
+        <SalidaPuestaSol salidaYPuestaSol={salidaYPuestaSol} setSalidaYPuestaSol={setSalidaYPuestaSol} />
         <Humedad humedad={humedad} setHumedad={setHumedad}/>
         <Visibilidad visibilidad={visibilidad} setVisibilidad={setVisibilidad} />
         <CalidadAire calidadDelAire={calidadDelAire} setCalidadDelAire={setCalidadDelAire}/>

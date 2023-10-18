@@ -5,7 +5,6 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
-    height: "auto",
   },
   span2: {
     fontSize:"large",
@@ -18,22 +17,25 @@ const estilos = {
   },
 };
 
-function SalidaPuestaSol({salidaYPuestaSol}) {
-  return (     
-        <div className="grid-item" style={estilos.grilla}>
-        <br></br>
-        <span style={estilos.span2}>Sunrise</span>
-              <br></br>
-              <span style={estilos.span4}>🌅</span>
-              <span style={estilos.span4}>{salidaYPuestaSol.min}</span>
-              <br></br>
-              <br></br>
-              <span style={estilos.span2}>Sunset</span>
-              <br></br>
-              <span style={estilos.span4}>🌄</span>
-              <span style={estilos.span4}>{salidaYPuestaSol.max}</span>
-              <br></br>
-        </div>      
+function SalidaPuestaSol({ salidaYPuestaSol }) {
+  let salidaSol = salidaYPuestaSol.min.toString().split("T")[1];
+  let puestaSol = salidaYPuestaSol.max.toString().split("T")[1];
+  return (
+    <div className="grid-item" style={estilos.grilla}>
+      <br></br>
+      <span style={estilos.span2}>Sunrise</span>
+      <br></br>
+      <span style={estilos.span4}>🌅</span>
+      <span style={estilos.span4}>{salidaSol}</span>
+      <br></br>
+      <span style={estilos.span2}>Sunset</span>
+      <br></br>
+      <span style={estilos.span4}>🌄</span>
+      <span style={estilos.span4}>{puestaSol}</span>
+      <br></br>
+      <br></br>
+    </div>
   );
 }
+
 export { SalidaPuestaSol };

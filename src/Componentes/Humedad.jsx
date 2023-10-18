@@ -5,9 +5,6 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
-    display: "grid",
-    flex: "1 0 100px",
-    height: "auto",
   },
   span: {
     fontSize: "x-large",

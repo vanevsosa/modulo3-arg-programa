@@ -8,8 +8,8 @@ const chartSetting = {
       label: 'rainfall (mm)',
     },
   ],
-  width: 300,
-  height: auto,
+  width: 500,
+  height: 300,
   sx: {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
       transform: 'rotate(-90deg) translate(0px, -20px)',

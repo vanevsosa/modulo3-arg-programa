@@ -6,20 +6,16 @@ const estilos = {
       border: "5px solid #10113b",
       fontSize: "medium",
       textAlign: "center",
-      height: "auto",
-    },
-    span: {
-      fontSize: "x-large",
-      color: "rgb(39 41 209)",
-      fontWeight: "bolder",
     },
     span2: {
       fontSize: "large",
       fontWeight: "bolder",
+      fontFamily: "emoji",
     },
     span3: {
       fontSize: "medium",
       fontWeight: "bolder",
+      fontFamily: "emoji",
     },
     img: {
         width: "35%",

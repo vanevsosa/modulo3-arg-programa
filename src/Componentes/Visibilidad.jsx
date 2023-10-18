@@ -5,7 +5,6 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
-    height: "auto",
   },
   span: {
     fontSize: "x-large",

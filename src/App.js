@@ -8,7 +8,7 @@ const estilos = {
   contenedorGeneral: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-    gap:"40px"
+    gap:"10px"
   },
 };
 function App() {

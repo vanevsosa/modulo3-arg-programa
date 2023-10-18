@@ -4,7 +4,6 @@ const estilos = {
     border: "5px solid #10113b",
     fontSize: "medium",
     textAlign: "center",
-    height: "auto",
   },
   span: {
     fontSize:"x-large",
@@ -14,16 +13,7 @@ const estilos = {
   span2: {
     fontSize:"large",
     fontWeight: "bolder",
-  },
-  span3: {
-    fontSize:"large",
-    fontWeight: "bolder",
-  },
-  span4: {
-    fontSize:"large",
-    fontWeight: "bolder",
-    color: "rgb(39 41 209)",
-  },
+  }, 
 };
 
 function EstadoViento({windStatus}) {

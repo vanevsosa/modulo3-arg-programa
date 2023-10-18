@@ -4,14 +4,13 @@ import { BarChart } from "@mui/x-charts/BarChart";
 const estilos = {
   grafico: {
     padding: "0",
-    height: "50%",
   },
   minMax: {
     fontFamily: "-apple-system",
     color: "rgb(39 41 209)",
     border: "solid 9px #35476c",
     fontWeight: "bolder",
-    maxHeight: "auto",
+    maxHeight: "250px",
     backgroundColor: "#ffe5b4",
   },
 };

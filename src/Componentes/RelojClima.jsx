@@ -2,24 +2,23 @@ import {Temperatura} from './Temperatura';
 import relojClima from '../assets/relojClima.jpg';
 
 const estilos = {
-  container: {
-    maxWidth: "550px",
-    margin: "0 auto",
+  container: { 
     textAlign: "center",
   },
-  span: {
-    fontSize: "xx-large",
-    color: "rgb(39 41 209)",
-    fontWeight: "bolder",
-  },
   span2: {
-    fontSize: "large",
-    color: "rgb(39 41 209)",
+    fontSize: "x-large",
     fontWeight: "bolder",
+    fontFamily: "emoji",
   },
+  span3: {
+    fontSize: "x-large",
+    fontWeight: "bolder",
+    fontFamily: "emoji",
+  }
 };
 
-function RelojClima({calidadDelAire, tempActual, setTempActual, fecha, setFecha}) {
+function RelojClima({calidadDelAire, tempActual, setTempActual, fecha}) {
+    let fechaConFormato = fecha.toString().split("T");
   const weatherCodeInfo = {
     0 : {
         "name": "despejado",
@@ -139,10 +138,10 @@ function RelojClima({calidadDelAire, tempActual, setTempActual, fecha, setFecha}
   return (
     <div style={estilos.container}>
       <div>
-        <img src={relojClima} width={200} height={200} alt="Reloj de clima" />
+        <img src={relojClima} width="45%" height="auto" alt="Reloj de clima" />
       </div>
       <br></br>
-      <span style={estilos.span2}>{fecha}</span>
+      <span style={estilos.span2}>{fechaConFormato[0]} , {fechaConFormato[1]}</span>
       <br></br>
       <br></br>
       <Temperatura tempActual={tempActual} setTempActual={setTempActual}/>

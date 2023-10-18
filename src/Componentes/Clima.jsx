@@ -1,4 +1,4 @@
-import cielo from '../assets/cielo.jpeg';
+
 import { useState, useEffect } from "react";
 import {RecepcionApiDesdeClima} from './RecepcionApiDesdeClima';
 import {CircularWithValueLabel} from './CircularProgressWithLabel';
@@ -6,7 +6,7 @@ import {CircularWithValueLabel} from './CircularProgressWithLabel';
 
 const estilos = {
   fondoClima: {
-    backgroundImage: `url(${cielo})`,
+    backgroundColor: "lightblue",
     backgroundRepeat: "no-repeat",
     maxWidth: "100%",
     display: "flex",

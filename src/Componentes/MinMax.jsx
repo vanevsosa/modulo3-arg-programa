@@ -12,16 +12,15 @@ const estilos = {
     display: "grid",
     columnGap: "10px",
     gridTemplateColumns: "auto auto",
-    maxWidth: "550px",
+    maxWidth: "950px",
     margin: "0 auto",
-    padding: "25px 25px",
-    height: "auto",
+    padding: "5px",
   },
   span: {
     fontSize:"xxx-large",
   },
   span3: {
-    fontSize:"xx-large",
+    fontSize:"XX-large",
   },
 };
 
