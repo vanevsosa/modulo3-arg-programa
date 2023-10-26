@@ -1,28 +1,20 @@
-import './App.css';
-import {Clima} from './Componentes/Clima';
+import "./App.css";
+import Clima from "./Componentes/Clima";
+import Transporte from "./Componentes/Transporte";
 
-const estilos = {
-  header: {
-    justifyContent: "space-evenly",
-  },
-  contenedorGeneral: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap:"10px"
-  },
-};
 function App() {
+  
   return (
-      <header className="contenedorGeneral" style={estilos.header}>
-      <div style={estilos.contenedorGeneral}>
+      
+      <div className= "App">
+
           <Clima/>
+
+          <Transporte/>
+          
         </div>
-      </header>
   );
 }
 
 export default App;
 
-// https://www.youtube.com/watch?v=mDnd5rCDk6s
-// Video íconos
-// https://bas.dev/work/meteocons página Íconos
