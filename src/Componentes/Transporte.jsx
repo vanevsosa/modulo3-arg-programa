@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useState, useEffect } from "react";
-import DatosJson from "../Datos.json";
 import L from 'leaflet';
 
 const StyledDiv = styled.div`
@@ -26,108 +25,109 @@ export default function Transporte() {
     iconSize: [25, 25],
   });
 
-  let [datosApi, setDatosApi] = useState(DatosJson);
+  let [posicion, setPosicion] = useState({ lat: -34.6037, lng: -58.3816 });
 
-  let [cargando, setCargando] = useState(false);
+  let [datosApi, setDatosApi] = useState(null);
+
+  let [cargando, setCargando] = useState(true);
+
+  let [errorApi, setErrorApi] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      async function obtenerDatosDeApi() {
-        setCargando(true);
-        let respuesta = await fetch("https://apitransporte.buenosaires.gob.ar/colectivos/vehiclePositionsSimple?client_id=cb6b18c84b3b484d98018a791577af52&client_secret=3e3DB105Fbf642Bf88d5eeB8783EE1E6");
-        let datos = await respuesta.json();
-        setDatosApi(datos);
-        setCargando(false);
-      }
-      obtenerDatosDeApi();
+      const fetchData = async () => {
+        try {
+          const response = await fetch('https://datosabiertos-transporte-apis.buenosaires.gob.ar:443/colectivos/vehiclePositionsSimple?&client_id=cb6b18c84b3b484d98018a791577af52&client_secret=3e3DB105Fbf642Bf88d5eeB8783EE1E6');
+          if (!response.ok) {
+              setErrorApi(true);
+            }
+          const jsonData = await response.json();
+          setDatosApi(jsonData);
+          setCargando(false);
+          setErrorApi(false);
+          console.log("datosApi actualizados")
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+      fetchData();
     }, 31000);
     return () => clearInterval(interval);
   }, []);
 
   let lineasActivas = [];
-  datosApi.map((bondi) => {
-    return (lineasActivas.push(bondi["route_short_name"]))
+   if (datosApi) {
+    datosApi.map((bondi) => {
+      return (lineasActivas.push(`${bondi["route_short_name"]} - ${bondi["trip_headsign"]}`))
   });
+  };
+
   lineasActivas = (Array.from(new Set(lineasActivas))).sort();
 
   let [lineaElegida, setLineaElegida] = useState([]);
 
-  let [eleccion, setEleccion] = useState(false);
+  let [bondiElegido, setBondiElegido] = useState('');
 
   function handleChange(event) {
-    setLineaElegida(datosApi.filter((bondi) => bondi["route_short_name"] === event.target.value));
-    setEleccion(true);
+    let linea = (datosApi.filter((bondi) => bondi["route_short_name"] === (event.target.value).split(" - ")[0]));
+    setLineaElegida(linea);
+    setBondiElegido(`${linea[0]["route_short_name"]} - ${linea[0]["trip_headsign"]}`);
   };
 
   function posicionPromedio() {
-    let latitudes = [];
-    let longitudes = [];
-    let promLat;
-    let promLng;
-    lineaElegida.map((bondi) => (latitudes.push(bondi["latitude"])));
-    lineaElegida.map((bondi) => (longitudes.push(bondi["longitude"])));
-    promLat = (latitudes.reduce((a, b) => a + b, latitudes[0])) / latitudes.length;
-    promLng = (longitudes.reduce((a, b) => a + b, longitudes[0])) / longitudes.length;
-    setPosicion({ lat: promLat, lng: promLng });
+    const sumalat = lineaElegida.map(item => item.latitude).reduce((prev, curr) => prev + curr, 0);
+    const promlat = (sumalat/lineaElegida.length);
+    const sumalng = lineaElegida.map(item => item.longitude).reduce((prev, curr) => prev + curr, 0);
+    const promlng = (sumalng/lineaElegida.length);
+    setPosicion({ lat: promlat, lng: promlng });
   };
 
-  let [posicion, setPosicion] = useState({ lat: -34.6037, lng: -58.3816 });
-
-  function SetViewOnClick({ coords }) {
+  function SetViewOnClick() {
     const map = useMap();
-    map.setView(coords, 10);
-    console.log(coords);
-
+    map.setView(posicion, 10);
     return null;
-  }
+  };
 
   return (
 
     <StyledDiv>
-      <h2>TRANSPORTE PUBLICO DE LA CIUDAD DE BUENOS AIRES</h2>
+    <h2>INFO ONLINE DE TRANSPORTE PUBLICO</h2>
 
-      {cargando && <h4>ACTUALIZANDO DATOS...</h4>}
+    {cargando && <h4>ACTUALIZANDO DATOS...</h4>}
 
-      {!cargando && <label>
+    {errorApi && <h4>No se pudo obtener la información</h4>}
 
-        Selecciona una linea :
+    {!cargando && <label>
 
-        <select value={""} onChange={handleChange}>
+      Selecciona una linea :
 
-          {lineasActivas.map((option) => (
+      <select value={bondiElegido} onChange={handleChange}>
+        {lineasActivas.map((option) => (<option value={option}>{option}</option>))}
+      </select>
 
-            <option value={option}>{option}</option>
+    </label>}
 
-          ))}
+    <MapContainer style={{ width: "100%", height: "100%" }} center={posicion} zoom={9} scrollWheelZoom={false}>
 
-</select>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-</label>}
-
-{eleccion && <button onClick={posicionPromedio}>Centrar Mapa</button>}
-
-<MapContainer style={{ width: "100%", height: "100%" }} center={posicion} zoom={9} scrollWheelZoom={true}>
-
-  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-  {lineaElegida.map((bondi) => {
-    return (
-      <Marker position={[bondi["latitude"], bondi["longitude"]]} icon={busIcon}>
-        <Popup>
-          Linea: {bondi["route_short_name"]}
-          <br />Destino: {bondi["trip_headsign"]}
-          <br />Empresa: {bondi["agency_name"]}
-          <br />Velocidad: {bondi["speed"]}km/h
-        </Popup>
-      </Marker>)
-  })}
-  <SetViewOnClick
-          coords={posicion}
-        />
-      </MapContainer>
-    </StyledDiv>
-  );
-}
+      {lineaElegida.map((bondi) => {
+        return (
+          <Marker position={[bondi["latitude"], bondi["longitude"]]} icon={busIcon}>
+            <Popup>
+              Linea: {bondi["route_short_name"]}
+              <br />Destino: {bondi["trip_headsign"]}
+              <br />Empresa: {bondi["agency_name"]}
+              <br />Velocidad: {bondi["speed"]}km/h
+            </Popup>
+          </Marker>
+        )
+      })}
+      <SetViewOnClick />
+    </MapContainer>
+  </StyledDiv>
+);
+};
     
     
         
