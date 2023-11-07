@@ -27,58 +27,65 @@ export default function Transporte() {
 
   let [posicion, setPosicion] = useState({ lat: -34.6037, lng: -58.3816 });
 
-  let [datosApi, setDatosApi] = useState(null);
+  let [datosApi, setDatosApi] = useState();
 
   let [cargando, setCargando] = useState(true);
 
   let [errorApi, setErrorApi] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('https://datosabiertos-transporte-apis.buenosaires.gob.ar:443/colectivos/vehiclePositionsSimple?&client_id=cb6b18c84b3b484d98018a791577af52&client_secret=3e3DB105Fbf642Bf88d5eeB8783EE1E6');
-          if (!response.ok) {
-              setErrorApi(true);
-            }
-          const jsonData = await response.json();
-          setDatosApi(jsonData);
-          setCargando(false);
-          setErrorApi(false);
-          console.log("datosApi actualizados")
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
-      fetchData();
-    }, 31000);
-    return () => clearInterval(interval);
-  }, []);
-
-  let lineasActivas = [];
-   if (datosApi) {
-    datosApi.map((bondi) => {
-      return (lineasActivas.push(`${bondi["route_short_name"]} - ${bondi["trip_headsign"]}`))
-  });
-  };
-
-  lineasActivas = (Array.from(new Set(lineasActivas))).sort();
+  let [lineasActivas, setLineasActivas] = useState();
 
   let [lineaElegida, setLineaElegida] = useState([]);
 
-  let [bondiElegido, setBondiElegido] = useState('');
+  let [bondiElegido, setBondiElegido] = useState();
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://datosabiertos-transporte-apis.buenosaires.gob.ar:443/colectivos/vehiclePositionsSimple?&client_id=cb6b18c84b3b484d98018a791577af52&client_secret=3e3DB105Fbf642Bf88d5eeB8783EE1E6');
+      if (!response.ok) {
+        setErrorApi(true);
+      };
+      const jsonData = await response.json();
+      if (jsonData) {
+        setDatosApi(jsonData);
+        let lineas = ["-elija una opcion-"];
+        jsonData.map((i) => {
+          return (lineas.push(`${i["route_short_name"]} - ${i["trip_headsign"]}`))
+        });
+        setLineasActivas((Array.from(new Set(lineas))).sort());
+        setCargando(false);
+        setErrorApi(false);
+        let linea = (jsonData.filter((i) => (`${i["route_short_name"]} - ${i["trip_headsign"]}`) === bondiElegido));
+        setLineaElegida(linea);
+      };
+    } catch (error) {
+      console.error('Error:', error);
+    };
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCargando(true);
+      fetchData();
+    }, 31000);
+    return () => clearInterval(interval);
+  }, [lineaElegida]);
 
   function handleChange(event) {
-    let linea = (datosApi.filter((bondi) => bondi["route_short_name"] === (event.target.value).split(" - ")[0]));
+    let linea = (datosApi.filter((i) => (`${i["route_short_name"]} - ${i["trip_headsign"]}`) === event.target.value));
     setLineaElegida(linea);
-    setBondiElegido(`${linea[0]["route_short_name"]} - ${linea[0]["trip_headsign"]}`);
+    setBondiElegido(event.target.value);
   };
 
   function posicionPromedio() {
     const sumalat = lineaElegida.map(item => item.latitude).reduce((prev, curr) => prev + curr, 0);
-    const promlat = (sumalat/lineaElegida.length);
+    const promlat = (sumalat / lineaElegida.length);
     const sumalng = lineaElegida.map(item => item.longitude).reduce((prev, curr) => prev + curr, 0);
-    const promlng = (sumalng/lineaElegida.length);
+    const promlng = (sumalng / lineaElegida.length);
     setPosicion({ lat: promlat, lng: promlng });
   };
 
@@ -91,44 +98,42 @@ export default function Transporte() {
   return (
 
     <StyledDiv>
-    <h2>INFO ONLINE DE TRANSPORTE PUBLICO</h2>
+      <h2>INFO ONLINE DE TRANSPORTE PUBLICO</h2>
 
-    {cargando && <h4>ACTUALIZANDO DATOS...</h4>}
+      {cargando && <h4>ACTUALIZANDO DATOS...</h4>}
 
-    {errorApi && <h4>No se pudo obtener la información</h4>}
+      {errorApi && <h4>No se pudo obtener la información</h4>}
 
-    {!cargando && <label>
+      {!cargando && <label>
 
-      Selecciona una linea :
+        Selecciona una linea :
 
-      <select value={bondiElegido} onChange={handleChange}>
-        {lineasActivas.map((option) => (<option value={option}>{option}</option>))}
-      </select>
+        <select value={bondiElegido} onChange={handleChange}>
+          {lineasActivas.map((option) => (<option value={option}>{option}</option>))}
+        </select>
 
-    </label>}
+      </label>}
 
-    <MapContainer style={{ width: "100%", height: "100%" }} center={posicion} zoom={9} scrollWheelZoom={false}>
+      <MapContainer style={{ width: "100%", height: "100%" }} center={posicion} zoom={10} scrollWheelZoom={false}>
 
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      {lineaElegida.map((bondi) => {
-        return (
-          <Marker position={[bondi["latitude"], bondi["longitude"]]} icon={busIcon}>
-            <Popup>
-              Linea: {bondi["route_short_name"]}
-              <br />Destino: {bondi["trip_headsign"]}
-              <br />Empresa: {bondi["agency_name"]}
-              <br />Velocidad: {bondi["speed"]}km/h
-            </Popup>
-          </Marker>
-        )
-      })}
-      <SetViewOnClick />
-    </MapContainer>
-  </StyledDiv>
-);
+        {lineaElegida.map((item) => {
+          return (
+            <Marker position={[item["latitude"], item["longitude"]]} icon={busIcon}>
+              <Popup>
+                Linea: {item["route_short_name"]}
+                <br />Destino: {item["trip_headsign"]}
+                <br />Empresa: {item["agency_name"]}
+                <br />Velocidad: {item["speed"]}km/h
+              </Popup>
+            </Marker>
+          )
+        })}
+
+        <SetViewOnClick />
+      </MapContainer>
+    </StyledDiv>
+  );
 };
-    
-    
-        
     

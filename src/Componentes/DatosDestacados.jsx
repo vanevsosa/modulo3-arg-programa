@@ -64,8 +64,6 @@ export default function DatosDestacados(props){
 
     <div style={{display: "flex", flexDirection: "column", textAlign: "center"}} >
 
-      <h2>CLIMA EN CORDOBA</h2>
-
       <p>Highlights</p>
 
       <GridDatosDest>
