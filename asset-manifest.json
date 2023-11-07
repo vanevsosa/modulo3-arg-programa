@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/modulo3-arg-programa/static/css/main.20850aab.css",
-    "main.js": "/modulo3-arg-programa/static/js/main.c159fc5b.js",
+    "main.js": "/modulo3-arg-programa/static/js/main.74b51713.js",
     "static/js/787.57af8fdc.chunk.js": "/modulo3-arg-programa/static/js/787.57af8fdc.chunk.js",
     "static/media/chubascos_nieve_fuertes_dia.svg": "/modulo3-arg-programa/static/media/chubascos_nieve_fuertes_dia.64a7aedf660538c7066ba580e12c69c3.svg",
     "static/media/chubascos_nieve_fuertes_noche.svg": "/modulo3-arg-programa/static/media/chubascos_nieve_fuertes_noche.9aafafbf7d31c6c5f696f0079ca96d72.svg",
@@ -56,11 +56,11 @@
     "static/media/nublado_noche.svg": "/modulo3-arg-programa/static/media/nublado_noche.8a5788db9979257e9e7f313cbf51dfe7.svg",
     "static/media/umbrella.svg": "/modulo3-arg-programa/static/media/umbrella.83a363f551ac4169c52b970967ea5fdd.svg",
     "main.20850aab.css.map": "/modulo3-arg-programa/static/css/main.20850aab.css.map",
-    "main.c159fc5b.js.map": "/modulo3-arg-programa/static/js/main.c159fc5b.js.map",
+    "main.74b51713.js.map": "/modulo3-arg-programa/static/js/main.74b51713.js.map",
     "787.57af8fdc.chunk.js.map": "/modulo3-arg-programa/static/js/787.57af8fdc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.20850aab.css",
-    "static/js/main.c159fc5b.js"
+    "static/js/main.74b51713.js"
   ]
 }
